@@ -10,7 +10,7 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
 import rizkyfadilah.binar.synrgy6.android.challengechapter4.R
-import rizkyfadilah.binar.synrgy6.android.challengechapter4.database.RegisterDatabase
+import rizkyfadilah.binar.synrgy6.android.challengechapter4.database.resgister_database.RegisterDatabase
 import rizkyfadilah.binar.synrgy6.android.challengechapter4.databinding.FragmentLoginBinding
 import rizkyfadilah.binar.synrgy6.android.challengechapter4.repository.RegisterRepository
 import rizkyfadilah.binar.synrgy6.android.challengechapter4.viewmodel.LoginViewModel
@@ -72,7 +72,7 @@ class LoginFragment : Fragment() {
 
     private fun navigateToHome() {
         Log.i("MYTAG", "insidi navigate")
-        NavHostFragment.findNavController(this).navigate(R.id.action_loginFragment_to_userDetailsFragment)
+        NavHostFragment.findNavController(this).navigate(R.id.action_loginFragment_to_notesFragment)
     }
     private  fun navigateToRegister(){
         NavHostFragment.findNavController(this).navigate(R.id.action_loginFragment_to_registerFragment)

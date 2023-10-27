@@ -1,13 +1,15 @@
-package rizkyfadilah.binar.synrgy6.android.challengechapter4.database
+package rizkyfadilah.binar.synrgy6.android.challengechapter4.database.resgister_database
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 
-
+// TODO 3 : Create Dao for Register
 @Dao
 interface RegisterDatabaseDao {
+
+    // TODO 4 : Create Query for Register
     @Insert
     suspend fun insert(registerEntity: RegisterEntity)
 

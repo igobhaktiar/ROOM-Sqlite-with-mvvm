@@ -16,7 +16,6 @@ import rizkyfadilah.binar.synrgy6.android.challengechapter4.repository.RegisterR
 
 class LoginViewModel(private val repository: RegisterRepository, private val application: Application) : AndroidViewModel(application), Observable {
 
-    val users = repository.users
 
     @Bindable
     val inputUsername = MutableLiveData<String>()

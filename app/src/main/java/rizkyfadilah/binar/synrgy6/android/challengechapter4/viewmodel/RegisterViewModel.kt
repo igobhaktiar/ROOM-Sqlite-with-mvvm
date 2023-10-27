@@ -2,8 +2,6 @@ package rizkyfadilah.binar.synrgy6.android.challengechapter4.viewmodel
 
 import android.app.Application
 import androidx.databinding.Observable
-import android.os.Parcel
-import android.os.Parcelable
 import android.util.Log
 import androidx.databinding.Bindable
 import androidx.lifecycle.AndroidViewModel
@@ -14,8 +12,9 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
-import rizkyfadilah.binar.synrgy6.android.challengechapter4.database.RegisterEntity
+import rizkyfadilah.binar.synrgy6.android.challengechapter4.database.resgister_database.RegisterEntity
 import rizkyfadilah.binar.synrgy6.android.challengechapter4.repository.RegisterRepository
+
 
 class RegisterViewModel(private val repository: RegisterRepository, application: Application) :
     AndroidViewModel(application), Observable {
@@ -49,7 +48,7 @@ class RegisterViewModel(private val repository: RegisterRepository, application:
 
 
     fun submitButton() {
-        if (userName.value.isNullOrEmpty() || userEmail.value.isNullOrEmpty() || userPassword.value.isNullOrEmpty() || userConfirmPassword.value.isNullOrEmpty()) {
+        if (userName.value.isNullOrEmpty() || userEmail.value.isNullOrEmpty() || userPassword.value.isNullOrEmpty() || userConfirmPassword.value.isNullOrEmpty() || userPassword.value != userConfirmPassword.value) {
             _errorToast.value = true
         } else {
             uiScope.launch {

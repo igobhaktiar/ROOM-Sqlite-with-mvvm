@@ -1,6 +1,5 @@
 package rizkyfadilah.binar.synrgy6.android.challengechapter4.fragment
 
-import android.database.Observable
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -11,13 +10,10 @@ import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.findNavController
 import rizkyfadilah.binar.synrgy6.android.challengechapter4.R
-import rizkyfadilah.binar.synrgy6.android.challengechapter4.database.RegisterDatabase
+import rizkyfadilah.binar.synrgy6.android.challengechapter4.database.resgister_database.RegisterDatabase
 import rizkyfadilah.binar.synrgy6.android.challengechapter4.databinding.FragmentRegisterBinding
 import rizkyfadilah.binar.synrgy6.android.challengechapter4.repository.RegisterRepository
-import rizkyfadilah.binar.synrgy6.android.challengechapter4.viewmodel.LoginViewModel
-import rizkyfadilah.binar.synrgy6.android.challengechapter4.viewmodel.LoginViewModelFactory
 import rizkyfadilah.binar.synrgy6.android.challengechapter4.viewmodel.RegisterViewModel
 import rizkyfadilah.binar.synrgy6.android.challengechapter4.viewmodel.RegisterViewModelFactory
 
@@ -48,7 +44,7 @@ class RegisterFragment : Fragment() {
         binding.lifecycleOwner = this
         registerViewModel.errorToast.observe(viewLifecycleOwner, Observer {hasError ->
             if (hasError){
-                Toast.makeText(context, "Please fill all the field", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Error! Check your username, password, and email!", Toast.LENGTH_SHORT).show()
                 registerViewModel.donetoast()
             }
         })

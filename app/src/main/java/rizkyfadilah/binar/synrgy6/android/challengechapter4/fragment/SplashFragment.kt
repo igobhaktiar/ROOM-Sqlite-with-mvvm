@@ -29,7 +29,7 @@ class SplashFragment : Fragment() {
         val sharedPref = SharedPref(requireContext())
         val isLogin = sharedPref.checkLogin()
         if (isLogin){
-            findNavController().navigate(R.id.action_splashFragment_to_userDetailsFragment)
+            findNavController().navigate(R.id.action_splashFragment_to_notesFragment)
         } else{
             findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
         }
