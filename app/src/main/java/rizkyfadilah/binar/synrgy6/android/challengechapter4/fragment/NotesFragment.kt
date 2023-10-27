@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
@@ -27,6 +28,7 @@ import rizkyfadilah.binar.synrgy6.android.challengechapter4.viewmodel.NotesViemo
 class NotesFragment : Fragment(), DeleteListener, EditListener {
     private lateinit var binding: FragmentNotesBinding
     lateinit var viewModel: NotesViemodel
+    private var noteId = -1;
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -77,17 +79,18 @@ class NotesFragment : Fragment(), DeleteListener, EditListener {
     }
 
     override fun editItem(note: NoteEntity) {
-        editDialog()
+        val bundle = Bundle()
+        bundle.putInt("noteId", note.id)
+        editDialog(note)
     }
 
     override fun deleteItem(note: NoteEntity) {
-        deleteDialog()
+        deleteDialog(note)
     }
 
     // TODO 12 : Create function for add dialog
     private fun addDialog() {
         val addDialogBinding: AddDialogBinding = AddDialogBinding.inflate(layoutInflater)
-
         val addDialog = AlertDialog.Builder(requireContext(), 0).create()
 
         addDialog.apply {
@@ -104,7 +107,7 @@ class NotesFragment : Fragment(), DeleteListener, EditListener {
         }
     }
 
-    private fun deleteDialog(){
+    private fun deleteDialog(note: NoteEntity){
         val deleteDialogBinding: DeleteDialogBinding = DeleteDialogBinding.inflate(layoutInflater)
         val deleteDialog = AlertDialog.Builder(requireContext(), 0).create()
 
@@ -114,6 +117,8 @@ class NotesFragment : Fragment(), DeleteListener, EditListener {
         }.show()
 
         deleteDialogBinding.btnDelete.setOnClickListener {
+            viewModel.deleteNote(note)
+            Toast.makeText(requireContext(), "${note.title} Deleted", Toast.LENGTH_SHORT).show()
             deleteDialog.dismiss()
         }
 
@@ -122,8 +127,30 @@ class NotesFragment : Fragment(), DeleteListener, EditListener {
         }
     }
 
-    private  fun editDialog(){
+    private fun editDialog(note: NoteEntity){
+        val binding: AddDialogBinding = AddDialogBinding.inflate(layoutInflater)
+        val editDialog = AlertDialog.Builder(requireContext(), 0).create()
+        val bundle = Bundle()
 
+        editDialog.apply {
+            setView(binding.root)
+            setCancelable(false)
+        }.show()
+
+        binding.tvAddNote.text = "Edit Note"
+        binding.btnInput.text = "Save"
+        binding.etTittle.setText(note.title)
+        binding.etDescription.setText(note.description)
+        noteId = bundle.getInt("noteId")
+
+        binding.btnInput.setOnClickListener {
+            val title = binding.etTittle.text.toString()
+            val desc = binding.etDescription.text.toString()
+            val updateNotes = NoteEntity(title = title, description = desc)
+            updateNotes.id = noteId
+            viewModel.updateNote(updateNotes)
+            editDialog.dismiss()
+        }
     }
 
 }

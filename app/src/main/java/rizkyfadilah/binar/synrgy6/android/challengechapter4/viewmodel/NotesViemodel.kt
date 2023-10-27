@@ -37,4 +37,8 @@ class NotesViemodel (private val application: Application) : AndroidViewModel(ap
     fun insert(note: NoteEntity) = viewModelScope.launch(Dispatchers.IO){
         repository.insert(note)
     }
+
+    fun getNoteById(noteId: Int) = viewModelScope.launch(Dispatchers.IO){
+        repository.getNoteById(noteId)
+    }
 }
