@@ -19,4 +19,9 @@ class RegisterRepository(private val dao : RegisterDatabaseDao){
     suspend fun getUsername(userName: String): RegisterEntity?{
         return dao.getUsername(userName)
     }
+
+    // TODO 8 : Create function to get user by email
+    suspend fun getEmail(userEmail: String): RegisterEntity?{
+        return dao.getEmail(userEmail)
+    }
 }

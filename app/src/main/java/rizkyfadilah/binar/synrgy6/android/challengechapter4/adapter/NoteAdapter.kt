@@ -12,6 +12,7 @@ import rizkyfadilah.binar.synrgy6.android.challengechapter4.viewmodel.NotesViemo
 
 class NoteAdapter(
     val context: Context,
+    val selectListener: SelectListener,
     val deleteListener: DeleteListener,
     val editListener: EditListener,
 ) : RecyclerView.Adapter<NoteAdapter.NoteViewHolder>() {
@@ -44,6 +45,10 @@ class NoteAdapter(
         holder.binding.ivDelete.setOnClickListener{
             deleteListener.deleteItem(note)
         }
+
+        holder.itemView.setOnClickListener {
+            selectListener.selectItem(note)
+        }
     }
 
     override fun getItemCount(): Int {
@@ -55,6 +60,10 @@ class NoteAdapter(
         allNotes.addAll(newList)
         notifyDataSetChanged()
     }
+}
+
+interface SelectListener {
+    fun selectItem(note: NoteEntity)
 }
 
 interface EditListener {

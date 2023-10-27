@@ -17,6 +17,7 @@ import rizkyfadilah.binar.synrgy6.android.challengechapter4.R
 import rizkyfadilah.binar.synrgy6.android.challengechapter4.adapter.DeleteListener
 import rizkyfadilah.binar.synrgy6.android.challengechapter4.adapter.EditListener
 import rizkyfadilah.binar.synrgy6.android.challengechapter4.adapter.NoteAdapter
+import rizkyfadilah.binar.synrgy6.android.challengechapter4.adapter.SelectListener
 import rizkyfadilah.binar.synrgy6.android.challengechapter4.database.note_database.NoteEntity
 import rizkyfadilah.binar.synrgy6.android.challengechapter4.databinding.AddDialogBinding
 import rizkyfadilah.binar.synrgy6.android.challengechapter4.databinding.DeleteDialogBinding
@@ -25,7 +26,7 @@ import rizkyfadilah.binar.synrgy6.android.challengechapter4.pref.SharedPref
 import rizkyfadilah.binar.synrgy6.android.challengechapter4.viewmodel.NotesFactory
 import rizkyfadilah.binar.synrgy6.android.challengechapter4.viewmodel.NotesViemodel
 
-class NotesFragment : Fragment(), DeleteListener, EditListener {
+class NotesFragment : Fragment(),  SelectListener,DeleteListener, EditListener {
     private lateinit var binding: FragmentNotesBinding
     lateinit var viewModel: NotesViemodel
     private var noteId = -1;
@@ -57,7 +58,7 @@ class NotesFragment : Fragment(), DeleteListener, EditListener {
         binding.rvNotes.layoutManager = LinearLayoutManager(requireContext())
 
         // TODO 9 : Create adapter for recyclerview
-        val adapter = NoteAdapter(requireContext(), this, this)
+        val adapter = NoteAdapter(requireContext(), this, this, this)
         binding.rvNotes.adapter = adapter
 
 
@@ -78,6 +79,7 @@ class NotesFragment : Fragment(), DeleteListener, EditListener {
         }
     }
 
+    // TODO 11 : Create function for edit and delete item
     override fun editItem(note: NoteEntity) {
         val bundle = Bundle()
         bundle.putInt("noteId", note.id)
@@ -88,8 +90,13 @@ class NotesFragment : Fragment(), DeleteListener, EditListener {
         deleteDialog(note)
     }
 
+    override fun selectItem(note: NoteEntity) {
+        editDialog(note)
+    }
+
     // TODO 12 : Create function for add dialog
     private fun addDialog() {
+        // TODO 13 : Create add dialog
         val addDialogBinding: AddDialogBinding = AddDialogBinding.inflate(layoutInflater)
         val addDialog = AlertDialog.Builder(requireContext(), 0).create()
 
@@ -98,6 +105,7 @@ class NotesFragment : Fragment(), DeleteListener, EditListener {
             setCancelable(false)
         }.show()
 
+        // TODO 14 : Set title and button text to "Add Note"
         addDialogBinding.btnInput.setOnClickListener {
             val title = addDialogBinding.etTittle.text.toString()
             val desc = addDialogBinding.etDescription.text.toString()
@@ -105,17 +113,24 @@ class NotesFragment : Fragment(), DeleteListener, EditListener {
             viewModel.insert(note)
             addDialog.dismiss()
         }
+
+        addDialog.setCanceledOnTouchOutside(true)
+
     }
 
+    // TODO 15 : Create function for delete dialog
     private fun deleteDialog(note: NoteEntity){
+        // TODO 16 : Create delete dialog
         val deleteDialogBinding: DeleteDialogBinding = DeleteDialogBinding.inflate(layoutInflater)
         val deleteDialog = AlertDialog.Builder(requireContext(), 0).create()
 
+        // TODO 17 : Set title and button text to "Delete Note"
         deleteDialog.apply {
             setView(deleteDialogBinding.root)
             setCancelable(false)
         }.show()
 
+        // TODO 18 : Create function for delete and cancel button
         deleteDialogBinding.btnDelete.setOnClickListener {
             viewModel.deleteNote(note)
             Toast.makeText(requireContext(), "${note.title} Deleted", Toast.LENGTH_SHORT).show()
@@ -125,9 +140,12 @@ class NotesFragment : Fragment(), DeleteListener, EditListener {
         deleteDialogBinding.btnCancel.setOnClickListener {
             deleteDialog.dismiss()
         }
+        deleteDialog.setCanceledOnTouchOutside(true)
     }
 
+    // TODO 19 : Create function for edit dialog
     private fun editDialog(note: NoteEntity){
+        // TODO 20 : Create edit dialog
         val binding: AddDialogBinding = AddDialogBinding.inflate(layoutInflater)
         val editDialog = AlertDialog.Builder(requireContext(), 0).create()
         val bundle = Bundle()
@@ -137,12 +155,14 @@ class NotesFragment : Fragment(), DeleteListener, EditListener {
             setCancelable(false)
         }.show()
 
+        // TODO 21 : Set title and button text to "Edit Note"
         binding.tvAddNote.text = "Edit Note"
         binding.btnInput.text = "Save"
         binding.etTittle.setText(note.title)
         binding.etDescription.setText(note.description)
         noteId = bundle.getInt("noteId")
 
+        // TODO 22 : Create function for save and cancel button
         binding.btnInput.setOnClickListener {
             val title = binding.etTittle.text.toString()
             val desc = binding.etDescription.text.toString()
@@ -151,6 +171,10 @@ class NotesFragment : Fragment(), DeleteListener, EditListener {
             editDialog.dismiss()
             Toast.makeText(requireContext(), "${note.title} Updated", Toast.LENGTH_SHORT).show()
         }
+
+        editDialog.setCanceledOnTouchOutside(true)
+
     }
+
 
 }

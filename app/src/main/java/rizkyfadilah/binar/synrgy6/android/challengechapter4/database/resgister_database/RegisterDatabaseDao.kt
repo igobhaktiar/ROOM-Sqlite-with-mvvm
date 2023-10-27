@@ -19,5 +19,8 @@ interface RegisterDatabaseDao {
     @Query("SELECT * FROM register_users_table WHERE user_name LIKE :userName")
     suspend fun getUsername(userName: String): RegisterEntity?
 
+    @Query("SELECT * FROM register_users_table WHERE user_email LIKE :userEmail")
+    suspend fun getEmail(userEmail: String): RegisterEntity?
+
 
 }

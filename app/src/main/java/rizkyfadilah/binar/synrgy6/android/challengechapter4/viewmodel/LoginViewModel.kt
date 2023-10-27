@@ -18,7 +18,10 @@ class LoginViewModel(private val repository: RegisterRepository, private val app
 
 
     @Bindable
-    val inputUsername = MutableLiveData<String>()
+    val userName = MutableLiveData<String>()
+
+    @Bindable
+    val email = MutableLiveData<String>()
 
     @Bindable
     val inputPassword = MutableLiveData<String>()
@@ -39,19 +42,19 @@ class LoginViewModel(private val repository: RegisterRepository, private val app
         get() = _errorToast
 
     //Function triggered When the Login Button is Clicked, Via Binding.
-    fun loginBUtton() {
+    fun loginButton() {
 
-        if (inputUsername.value.isNullOrEmpty() || inputPassword.value.isNullOrEmpty()) {
+        if (email.value.isNullOrEmpty() || inputPassword.value.isNullOrEmpty()) {
             //Show Toast
             _errorToast.value = true
         } else {
             uiScope.launch {
-                val userNames = repository.getUsername(inputUsername.value!!)
-                if (userNames != null){
-                    if (userNames.userPassword == inputPassword.value!!){
+                val email = repository.getEmail(email.value!!)
+                if (email != null) {
+                    if (email.userPassword == inputPassword.value!!){
                         _navigateToHome.value = true
                         val sharedPref = SharedPref(application)
-                        sharedPref.saveUser(userNames.userName, userNames.userEmail)
+                        sharedPref.saveUser(email.userName, email.userEmail)
                     }else{
                         //Show Toast
                         _errorToast.value = true
