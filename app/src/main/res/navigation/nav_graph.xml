@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/splashFragment">
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="rizkyfadilah.binar.synrgy6.android.challengechapter4.fragment.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_userDetailsFragment"
+            app:popUpTo="@id/nav_graph"
+            app:launchSingleTop="true"
+            app:popUpToInclusive="true"
+            app:destination="@id/userDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="rizkyfadilah.binar.synrgy6.android.challengechapter4.fragment.RegisterFragment"
+        android:label="fragment_register"
+        tools:layout="@layout/fragment_register" >
+        <action
+            android:id="@+id/action_registerFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/userDetailsFragment"
+        android:name="rizkyfadilah.binar.synrgy6.android.challengechapter4.fragment.UserDetailsFragment"
+        android:label="fragment_user_details"
+        tools:layout="@layout/fragment_user_details" >
+        <action
+            android:id="@+id/action_userDetailsFragment_to_loginFragment"
+            app:popUpTo="@id/nav_graph"
+            app:launchSingleTop="true"
+            app:popUpToInclusive="true"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="rizkyfadilah.binar.synrgy6.android.challengechapter4.fragment.SplashFragment"
+        android:label="fragment_splash"
+        tools:layout="@layout/fragment_splash" >
+        <action
+            android:id="@+id/action_splashFragment_to_loginFragment"
+            app:popUpTo="@id/nav_graph"
+            app:launchSingleTop="true"
+            app:popUpToInclusive="true"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_splashFragment_to_userDetailsFragment"
+            app:popUpTo="@id/nav_graph"
+            app:launchSingleTop="true"
+            app:popUpToInclusive="true"
+            app:destination="@id/userDetailsFragment" />
+    </fragment>
+</navigation>
