@@ -146,10 +146,10 @@ class NotesFragment : Fragment(), DeleteListener, EditListener {
         binding.btnInput.setOnClickListener {
             val title = binding.etTittle.text.toString()
             val desc = binding.etDescription.text.toString()
-            val updateNotes = NoteEntity(title = title, description = desc)
-            updateNotes.id = noteId
+            val updateNotes = NoteEntity(note.id, title, desc)
             viewModel.updateNote(updateNotes)
             editDialog.dismiss()
+            Toast.makeText(requireContext(), "${note.title} Updated", Toast.LENGTH_SHORT).show()
         }
     }
 
