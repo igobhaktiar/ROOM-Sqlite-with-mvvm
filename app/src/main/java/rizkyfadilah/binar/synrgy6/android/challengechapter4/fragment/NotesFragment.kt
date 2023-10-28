@@ -46,10 +46,10 @@ class NotesFragment : Fragment(),  SelectListener,DeleteListener, EditListener {
         val sharedPref = SharedPref(requireContext())
 
         // TODO 6 : Set textview to "Welcome, username"
-        binding.tvWelcomeUser.text = "Welcome, ${sharedPref.getUsername()}!"
+        binding.tvUser.text = "${sharedPref.getUsername()}!"
 
         // TODO 7 : Create function for logout
-        binding.tvLogout.setOnClickListener {
+        binding.llLogout.setOnClickListener {
             sharedPref.clearData()
             findNavController().navigate(R.id.action_notesFragment_to_loginFragment)
         }

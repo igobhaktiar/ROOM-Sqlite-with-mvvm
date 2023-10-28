@@ -55,6 +55,38 @@ class RegisterFragment : Fragment() {
                 displayUserList()
             }
         })
+
+        binding.etEmail.onFocusChangeListener = View.OnFocusChangeListener { v, hasFocus ->
+            if (!hasFocus) {
+                binding.etEmail.setBackgroundResource(R.drawable.bg_edittext)
+            } else {
+                binding.etEmail.setBackgroundResource(R.drawable.bg_input_active)
+            }
+        }
+
+        binding.etPassword.onFocusChangeListener = View.OnFocusChangeListener { v, hasFocus ->
+            if (!hasFocus) {
+                binding.etPassword.setBackgroundResource(R.drawable.bg_edittext)
+            } else {
+                binding.etPassword.setBackgroundResource(R.drawable.bg_input_active)
+            }
+        }
+
+        binding.etUsername.onFocusChangeListener = View.OnFocusChangeListener { v, hasFocus ->
+            if (!hasFocus) {
+                binding.etUsername.setBackgroundResource(R.drawable.bg_edittext)
+            } else {
+                binding.etUsername.setBackgroundResource(R.drawable.bg_input_active)
+            }
+        }
+
+        binding.etConfirmPassword.onFocusChangeListener = View.OnFocusChangeListener { v, hasFocus ->
+            if (!hasFocus) {
+                binding.etConfirmPassword.setBackgroundResource(R.drawable.bg_edittext)
+            } else {
+                binding.etConfirmPassword.setBackgroundResource(R.drawable.bg_input_active)
+            }
+        }
     }
 
     private fun displayUserList(){
