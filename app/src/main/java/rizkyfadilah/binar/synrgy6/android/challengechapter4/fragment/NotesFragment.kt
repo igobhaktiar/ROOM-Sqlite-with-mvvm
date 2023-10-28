@@ -50,8 +50,7 @@ class NotesFragment : Fragment(),  SelectListener,DeleteListener, EditListener {
 
         // TODO 7 : Create function for logout
         binding.llLogout.setOnClickListener {
-            sharedPref.clearData()
-            findNavController().navigate(R.id.action_notesFragment_to_loginFragment)
+            logout()
         }
 
         // TODO 8 : Create recyclerview
@@ -174,6 +173,31 @@ class NotesFragment : Fragment(),  SelectListener,DeleteListener, EditListener {
 
         editDialog.setCanceledOnTouchOutside(true)
 
+    }
+
+    private fun logout(){
+        // TODO 23 : Create logout function
+        val binding: DeleteDialogBinding = DeleteDialogBinding.inflate(layoutInflater)
+        val logoutDialog = AlertDialog.Builder(requireContext(), 0).create()
+
+        logoutDialog.apply {
+            setView(binding.root)
+            setCancelable(false)
+        }.show()
+
+        binding.tvDeleteNote.text = "Are you sure want to logout?"
+        binding.btnDelete.text = "Logout"
+
+        binding.btnDelete.setOnClickListener {
+            val sharedPref = SharedPref(requireContext())
+            sharedPref.clearData()
+            findNavController().navigate(R.id.action_notesFragment_to_loginFragment)
+            logoutDialog.dismiss()
+        }
+
+        binding.btnCancel.setOnClickListener {
+            logoutDialog.dismiss()
+        }
     }
 
 

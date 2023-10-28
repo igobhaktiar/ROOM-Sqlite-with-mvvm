@@ -5,54 +5,70 @@
     android:layout_height="match_parent"
     android:padding="16dp">
 
+
     <TextView
         android:id="@+id/tv_add_note"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/add_note"
-        android:textSize="16sp"
-        android:textStyle="bold"
+        android:textColor="@color/primaryColor"
+        android:layout_marginTop="16dp"
+        android:textSize="24sp"
+        android:fontFamily="@font/poppins_semibold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/et_tittle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="8dp"
-        android:background="@drawable/bg_edittext"
-        android:ems="10"
-        android:hint="@string/title"
-        android:paddingHorizontal="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_add_note" />
 
-    <EditText
-        android:id="@+id/et_description"
-        android:layout_width="0dp"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_tittle"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24sp"
+        app:layout_constraintTop_toBottomOf="@id/tv_add_note">
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/et_tittle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/title"
+            android:paddingHorizontal="16dp"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_description"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
         android:layout_marginTop="16dp"
-        android:background="@drawable/bg_edittext"
-        android:ems="10"
-        android:hint="@string/description"
-        android:paddingHorizontal="16dp"
-        app:layout_constraintEnd_toEndOf="@id/et_tittle"
-        app:layout_constraintStart_toStartOf="@id/et_tittle"
-        app:layout_constraintTop_toBottomOf="@id/et_tittle" />
+        app:layout_constraintTop_toBottomOf="@id/til_tittle">
 
-    <androidx.appcompat.widget.AppCompatButton
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/et_description"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="@string/description"
+            android:gravity="top"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:paddingHorizontal="16dp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+    <Button
         android:id="@+id/btn_input"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/input"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="32dp"
+        android:text="@string/insert"
+        android:textSize="18sp"
+        android:fontFamily="@font/poppins_semibold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/et_description" />
+        app:layout_constraintTop_toBottomOf="@id/til_description" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
