@@ -20,4 +20,11 @@
     <string name="delete_note">Delete Note</string>
     <string name="delete">Delete</string>
     <string name="cancel">Cancel</string>
+    <string name="login_here">Login here</string>
+    <string name="welcome_back_you_ve_been_missed">Welcome back you’ve been missed!</string>
+    <string name="sign_in">Sign In</string>
+    <string name="create_a_new_account">Create a new account</string>
+    <string name="create_account">Create Account</string>
+    <string name="create_an_account_so_you_can_save_your_notes">Create an account so you can save your notes</string>
+    <string name="already_have_an_account">Already have an account</string>
 </resources>

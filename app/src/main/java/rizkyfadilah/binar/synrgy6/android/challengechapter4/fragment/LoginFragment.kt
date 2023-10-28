@@ -61,13 +61,31 @@ class LoginFragment : Fragment() {
             }
         })
 
-        loginViewModel.navigatetoRegister.observe(viewLifecycleOwner, { hasFinished ->
+        loginViewModel.navigatetoRegister.observe(viewLifecycleOwner) { hasFinished ->
             if (hasFinished == true) {
                 Log.i("MYTAG", "insidi observe")
                 navigateToRegister()
                 loginViewModel.doneNavigating()
+            } else {
+                !(hasFinished ?: true)
             }
-        })
+        }
+
+        binding.etEmail.onFocusChangeListener = View.OnFocusChangeListener { v, hasFocus ->
+            if (!hasFocus) {
+                binding.etEmail.setBackgroundResource(R.drawable.bg_edittext)
+            } else {
+                binding.etEmail.setBackgroundResource(R.drawable.bg_input_active)
+            }
+        }
+
+        binding.etPassword.onFocusChangeListener = View.OnFocusChangeListener { v, hasFocus ->
+            if (!hasFocus) {
+                binding.etPassword.setBackgroundResource(R.drawable.bg_edittext)
+            } else {
+                binding.etPassword.setBackgroundResource(R.drawable.bg_input_active)
+            }
+        }
     }
 
     private fun navigateToHome() {

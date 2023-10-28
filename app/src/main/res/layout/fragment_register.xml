@@ -14,73 +14,149 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/bg_layout"
         android:paddingHorizontal="24dp">
 
         <TextView
             android:id="@+id/tv_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:text="@string/register"
-            android:textSize="24sp"
+            android:layout_marginTop="100dp"
+            android:fontFamily="@font/poppins_bold"
+            android:text="@string/create_account"
+            android:textColor="@color/primaryColor"
+            android:textSize="32sp"
             android:textStyle="bold"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/et_username"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="32dp"
-            android:hint="@string/username"
-            android:text="@={myLoginViewModel.userName}"
-            android:inputType="text"
-            app:layout_constraintTop_toBottomOf="@id/tv_login" />
-
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/et_email"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="16dp"
-            android:hint="@string/email_address"
-            android:text="@={myLoginViewModel.userEmail}"
-            android:inputType="textEmailAddress"
-            app:layout_constraintTop_toBottomOf="@id/et_username" />
-
-
-        tes<androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/et_password"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="16dp"
-            android:text="@={myLoginViewModel.userPassword}"
-            android:hint="@string/password"
-            android:inputType="textPassword"
-            app:layout_constraintTop_toBottomOf="@id/et_email" />
-
-
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/et_confirm_password"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="16dp"
-            android:text="@={myLoginViewModel.userConfirmPassword}"
-            android:hint="@string/confirm_password"
-            android:inputType="textPassword"
-            app:layout_constraintTop_toBottomOf="@id/et_password" />
-
-        <Button
+        <TextView
+            android:id="@+id/tv_create_account"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/et_confirm_password"
-            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="@string/create_an_account_so_you_can_save_your_notes"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="14sp"
             app:layout_constraintLeft_toLeftOf="parent"
-            android:layout_marginTop="16dp"
-            android:text="@string/register"
-            android:onClick="@{() -> myLoginViewModel.submitButton()}"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_login" />
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="56dp"
             android:textSize="16sp"
-            />
+            app:hintEnabled="false"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_create_account">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/et_username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_edittext"
+                android:drawablePadding="8dp"
+                android:fontFamily="@font/poppins_medium"
+                android:hint="@string/username"
+                android:inputType="text"
+                android:text="@={myLoginViewModel.userName}" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:textSize="16sp"
+            app:hintEnabled="false"
+            app:layout_constraintTop_toBottomOf="@id/til_username">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/et_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/bg_edittext"
+                android:hint="@string/email_address"
+                android:inputType="textEmailAddress"
+                android:text="@={myLoginViewModel.userEmail}" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:textSize="16sp"
+            app:hintEnabled="false"
+            app:passwordToggleEnabled="true"
+            app:layout_constraintTop_toBottomOf="@id/til_email">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/et_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_edittext"
+                android:hint="@string/password"
+                android:inputType="textPassword"
+                android:text="@={myLoginViewModel.userPassword}" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_confirm_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:textSize="16sp"
+            app:hintEnabled="false"
+            app:passwordToggleEnabled="true"
+            app:layout_constraintTop_toBottomOf="@id/til_password">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/et_confirm_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_edittext"
+                android:hint="@string/confirm_password"
+                android:inputType="textPassword"
+                android:text="@={myLoginViewModel.userConfirmPassword}" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/btn_register"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:layout_marginTop="40dp"
+            android:onClick="@{() -> myLoginViewModel.submitButton()}"
+            android:text="@string/register"
+            android:textSize="20sp"
+            android:fontFamily="@font/poppins_semibold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/til_confirm_password" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:onClick="@{() -> myLoginViewModel.login()}"
+            android:text="@string/already_have_an_account"
+            android:fontFamily="@font/poppins_semibold"
+            android:textSize="16sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_register" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

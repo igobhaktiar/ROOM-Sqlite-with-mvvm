@@ -75,6 +75,11 @@ class RegisterViewModel(private val repository: RegisterRepository, application:
         _errorToast.value = false
         Log.i("MYTAG", "Done taoasting ")
     }
+
+    fun login() {
+        _navigateto.value = true
+    }
+
     private fun insert(user: RegisterEntity): Job = viewModelScope.launch {
         repository.insert(user)
     }
